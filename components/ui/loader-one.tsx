@@ -4,25 +4,12 @@ import { motion } from "framer-motion";
 
 const LoaderOne = () => {
     return (
-        <div className="flex items-center justify-center gap-1">
-            {[...Array(3)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    className="h-3 w-3 rounded-full bg-blue-500"
-                    initial={{ x: 0 }}
-                    animate={{
-                        x: [0, 10, 0],
-                        opacity: [0.5, 1, 0.5],
-                        scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        delay: i * 0.2,
-                    }}
-                />
-            ))}
-        </div>
+        <div className="flex gap-2 items-center justify-center h-screen">
+        <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce-smooth"></div>
+        <div className="w-4 h-4 rounded-full bg-yellow-500 animate-bounce-smooth delay-400"></div>
+        <div className="w-4 h-4 rounded-full bg-green-500 animate-bounce-smooth delay-200"></div>
+      </div>
+      
     )
 }
 

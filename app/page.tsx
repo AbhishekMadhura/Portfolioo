@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link"
 import {
   ArrowRight,
@@ -9,6 +11,7 @@ import {
   Youtube
 } from "lucide-react"
 import abhi from 'public/abhi.jpg'
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
 import { SkillBadge } from "@/components/skill-badge"
@@ -23,14 +26,23 @@ import { SplashCursor } from "@/components/ui/splash-cursor"
 import LoaderOne from "@/components/ui/loader-one"
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500); // simulate loading time
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <LoaderOne />;
   return (
-    <div className="min-h-screen bg-background px-5 py-4">
+  
+    <div className="min-h-screen bg-background">
       
       <SplashCursor/>
       {/* Header */}
       
       <header className="fixed top-0 w-full border-b border-border/40 bg-background/80 backdrop-blur-md z-50">
-      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary bg-right to-green-600 blur-3xl opacity-20"></div>
+      <div className="inset-0 rounded-full bg-gradient-to-r from-primary bg-right to-green-600 blur-3xl opacity-20"></div>
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold tracking-tighter">
             <span className="text-primary">Abhishek</span>Madhura
@@ -64,14 +76,14 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container pt-24 pb-16 ">
+      <main className="container w-full max-w-full pt-24 pb-16 overflow-x-hidden ">
         {/* Hero Section */}
       
-        <section className="py-20 md:py-30 flex flex-col md:flex-row items-center gap-8  ">
+        <section className="py-20 md:py-30 flex flex-col md:flex-row items-center gap-10  ">
           
           <div className="flex-1 space-y-6 ">
             
-            <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <h1 className=" text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               {/*Building the <span className="text-primary">future</span> with code*/}
              {/*<span className={"text-primary"} >Abhishek </span>GUBBALA*/}
               <NameAnimation/>
@@ -126,13 +138,13 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div>
-          <div className="absolute  rounded-full bg-gradient-to-r from-primary to-green-600 blur-3xl opacity-10"></div>
+          <div className="">
+          <div className=" rounded-full bg-gradient-to-r from-primary to-green-600 blur-3xl opacity-10"></div>
           
             <img src="/me.png"
-            className="shadow-xl rounded-full right-0 top-0   z-10"
-            width={520}
-            height={400}
+            className="shadow-xl rounded-full z-10 w-full max-w-md mx-auto md:mx-0 right-0 h-auto mx-auto"
+            // width={520}
+            // height={400}
             />
           </div>
           
@@ -173,7 +185,7 @@ export default function Home() {
             <div className="flex-1 flex items-center justify-center">
               <div className="relative w-64 h-64 md:w-80 md:h-80">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-purple-600 blur-3xl opacity-20"></div>
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/20">
+                <div className="absolute w-full h-full rounded-full overflow-hidden border-2 border-primary/20">
                   <img
                     //src="/Profile.svg?height=400&width=400"
                     src="/abhi.png"

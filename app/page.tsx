@@ -8,7 +8,15 @@ import {
   Instagram,
   Linkedin,
   Mail,
-  Youtube
+  Youtube,
+  Code2,
+  Database,
+  Globe,
+  Server,
+  Cloud,
+  GitBranch,
+  Zap,
+  Terminal
 } from "lucide-react"
 import abhi from 'public/abhi.jpg'
 import { useEffect, useState } from "react"
@@ -24,6 +32,8 @@ import Workshops from "@/components/workshops";
 import NameAnimation from "@/components/name-animation";
 import { SplashCursor } from "@/components/ui/splash-cursor"
 import LoaderOne from "@/components/ui/loader-one"
+import { GlowingEffect } from "@/components/ui/glowing-effect"
+import RadialOrbitalTimeline from "@/components/ui/radial-orital-timeline"
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -33,12 +43,103 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  const skillsTimelineData = [
+    {
+      id: 1,
+      title: "React",
+      date: "2022",
+      content: "Building modern, responsive web applications with React and its ecosystem",
+      category: "Frontend",
+      icon: Code2,
+      relatedIds: [2, 4],
+      status: "completed" as const,
+      energy: 95
+    },
+    {
+      id: 2,
+      title: "Next.js",
+      date: "2023",
+      content: "Server-side rendering and static site generation with Next.js",
+      category: "Frontend",
+      icon: Globe,
+      relatedIds: [1, 5],
+      status: "completed" as const,
+      energy: 90
+    },
+    {
+      id: 3,
+      title: "Node.js",
+      date: "2022",
+      content: "Backend development with Node.js and Express for scalable APIs",
+      category: "Backend",
+      icon: Server,
+      relatedIds: [4, 5],
+      status: "completed" as const,
+      energy: 88
+    },
+    {
+      id: 4,
+      title: "MongoDB",
+      date: "2022",
+      content: "NoSQL database design and management with MongoDB",
+      category: "Database",
+      icon: Database,
+      relatedIds: [3, 5],
+      status: "completed" as const,
+      energy: 85
+    },
+    {
+      id: 5,
+      title: "AWS",
+      date: "2023",
+      content: "Cloud infrastructure and deployment with AWS services",
+      category: "Cloud",
+      icon: Cloud,
+      relatedIds: [2, 3, 6],
+      status: "in-progress" as const,
+      energy: 75
+    },
+    {
+      id: 6,
+      title: "Git",
+      date: "2021",
+      content: "Version control and collaboration with Git and GitHub",
+      category: "Tools",
+      icon: GitBranch,
+      relatedIds: [1, 2, 3],
+      status: "completed" as const,
+      energy: 92
+    },
+    {
+      id: 7,
+      title: "Docker",
+      date: "2023",
+      content: "Containerization and deployment with Docker",
+      category: "DevOps",
+      icon: Terminal,
+      relatedIds: [5],
+      status: "in-progress" as const,
+      energy: 70
+    },
+    {
+      id: 8,
+      title: "Python",
+      date: "2021",
+      content: "Machine learning and backend development with Python",
+      category: "Language",
+      icon: Zap,
+      relatedIds: [4],
+      status: "completed" as const,
+      energy: 90
+    }
+  ];
+
   if (loading) return <LoaderOne />;
   return (
   
     <div className="min-h-screen bg-background">
       
-      <SplashCursor/>
+      {/* <SplashCursor/> */}
       {/* Header */}
       
       <header className="fixed top-0 w-full border-b border-border/40 bg-background/80 backdrop-blur-md z-50">
@@ -169,12 +270,28 @@ export default function Home() {
               <div className="mt-8">
                 <h3 className="text-xl font-semibold mb-4">Education</h3>
                 <div className="space-y-4">
-                  <div className="border-l-2 border-primary pl-4 py-2">
+                  <div className="border-l-2 border-primary pl-4 py-2 relative">
+                    <GlowingEffect
+                      spread={40}
+                      glow={true}
+                      disabled={false}
+                      proximity={64}
+                      inactiveZone={0.01}
+                      borderWidth={3}
+                    />
                     <div className="text-sm text-muted-foreground">2023 - Present</div>
                     <div className="font-medium">BTech in CSE</div>
                     <div>BVC Engineering College, Odalarevu </div>
                   </div>
-                  <div className="border-l-2 border-primary/70 pl-4 py-2">
+                  <div className="border-l-2 border-primary/70 pl-4 py-2 relative">
+                    <GlowingEffect
+                      spread={40}
+                      glow={true}
+                      disabled={false}
+                      proximity={64}
+                      inactiveZone={0.01}
+                      borderWidth={3}
+                    />
                     <div className="text-sm text-muted-foreground">2020 - 2023</div>
                     <div className="font-medium">Diploma in Computer Engineering</div>
                     <div>BVC Institute Of Tech & Science, Amalapuram</div>
@@ -182,21 +299,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex-1 flex items-center justify-center">
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-purple-600 blur-3xl opacity-20"></div>
-                <div className="absolute w-full h-full rounded-full overflow-hidden border-2 border-primary/20">
-                  <img
-                    //src="/Profile.svg?height=400&width=400"
-                    src="/abhi.png"
-                    alt="Abhishek"
-                    className="w-full h-full object-cover"
-                    width={500}
-                    height={500}
-                   
-                  />
-                </div>
-              </div>
+            <div className="flex-1 -mt-20 flex items-center justify-center">
+              <RadialOrbitalTimeline timelineData={skillsTimelineData} />
             </div>
           </div>
         </section>
@@ -205,7 +309,15 @@ export default function Home() {
         <section id="skills" className="py-16 scroll-mt-20">
           <h2 className="text-3xl font-bold mb-12 text-center">Technical Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card rounded-xl p-6 border border-border/50">
+            <div className="bg-card rounded-xl p-6 border border-border/50 relative">
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={3}
+              />
               <h3 className="text-xl font-semibold mb-4">Languages</h3>
               <div className="flex flex-wrap gap-2">
                 <SkillBadge name="Python" />
@@ -217,7 +329,15 @@ export default function Home() {
                 
               </div>
             </div>
-            <div className="bg-card rounded-xl p-6 border border-border/50">
+            <div className="bg-card rounded-xl p-6 border border-border/50 relative">
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={3}
+              />
               <h3 className="text-xl font-semibold mb-4">Frameworks & Libraries</h3>
               <div className="flex flex-wrap gap-2">
                 <SkillBadge name="React" />
@@ -230,7 +350,15 @@ export default function Home() {
                 {/*<SkillBadge name="PyTorch" />*/}
               </div>
             </div>
-            <div className="bg-card rounded-xl p-6 border border-border/50">
+            <div className="bg-card rounded-xl p-6 border border-border/50 relative">
+              <GlowingEffect
+                spread={40}
+                glow={true}
+                disabled={false}
+                proximity={64}
+                inactiveZone={0.01}
+                borderWidth={3}
+              />
               <h3 className="text-xl font-semibold mb-4">Tools & Technologies</h3>
               <div className="flex flex-wrap gap-2">
                 <SkillBadge name="Git" />
@@ -251,61 +379,61 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
             <ProjectCard
-                title="SentimentAnalysis"
-                description="Developed a machine learning model using Natural Language Processing (NLP) to classify the sentiment  of customer reviews, enabling the company to identify key areas for improvement and enhance customer satisfaction."
-                tags={["Python", "Scikit-Learn","pandas"]}
-                image="projects/sen.png" 
-                
-                link="https://github.com/AbhishekMadhura/Sentiment-Analysisc"
-                deployed={{
-                  live: false,
-                  site: "https://predict-ab05c.web.app/"
-                }}
-
+              title="AIMock"
+              description="An AI-powered interview platform built with MERN stack that conducts real-time mock interviews using artificial intelligence. Features include live feedback, performance analytics, and socket-based communication for seamless interview experiences."
+              tags={["NextJS", "Node.js", "Express", "MongoDB", "AI", "Socket.io"]}
+              image="projects/aimock.png"
+              link="https://github.com/AbhishekMadhura/AIMock"
+              deployed={{
+                live: false,
+                site: ""
+              }}
             />
             <ProjectCard
-                title="IPO WebApp and RESTAPI"
-                description="A full-stack IPO tracking platform that allows users to explore and manage data about newly listed companies in the stock market. Designed to provide actionable insights with an intuitive UI and a robust backend."
-                tags={["React", "Tailwind", "Node", "MongoDB","Express"]}
-                // image="/placeholder.svg?height=300&width=500"
-                image="projects/ipo.png"
-                link="https://github.com/AbhishekMadhura/Bluestock-IPO"
-                deployed={{
-                        live: false,
-                        site: ""
-                }}
+              title="SentimentAnalysis"
+              description="Developed a machine learning model using Natural Language Processing (NLP) to classify the sentiment  of customer reviews, enabling the company to identify key areas for improvement and enhance customer satisfaction."
+              tags={["Python", "Scikit-Learn","pandas"]}
+              image="projects/sen.png" 
+              
+              link="https://github.com/AbhishekMadhura/Sentiment-Analysisc"
+              deployed={{
+                live: false,
+                site: "https://predict-ab05c.web.app/"
+              }}
             />
             <ProjectCard
-                title="E-Commerce Using React"
-                description="A responsive and modern e-commerce web app built using React.js, showcasing a product listing, cart functionality, and user interface best practices."
-                tags={["React", "React-Router", "Firebase" ,"RESTAPI"]}
-                // image="/placeholder.svg?height=300&width=500"
-                image="projects/ec.png"
-                link="https://github.com/AbhishekMadhura/E-commerce-React"
-                deployed={{
-                        live: true,
-                        site: "https://e-commerce-react-zeta-one.vercel.app/"
-                }}
+              title="IPO WebApp and RESTAPI"
+              description="A full-stack IPO tracking platform that allows users to explore and manage data about newly listed companies in the stock market. Designed to provide actionable insights with an intuitive UI and a robust backend."
+              tags={["React", "Tailwind", "Node", "MongoDB","Express"]}
+              image="projects/ipo.png"
+              link="https://github.com/AbhishekMadhura/Bluestock-IPO"
+              deployed={{
+                      live: false,
+                      site: ""
+              }}
             />
             <ProjectCard
-                title="Staff Management System"
-                description="The system allows easy access and updating of employee data. It generates timely reports to help monitor employees and support tasks like performance appraisals and promotions"
-                tags={["HTML", "JavaScript", "MySql", "PHP"]}
-                // image="/placeholder.svg?height=300&width=500"
-                image="projects/Staff.png"
-                link="https://github.com/AbhishekMadhura/StaffManagementSystem"
-                deployed={{
-                        live: false,
-                        site: ""
-                }}
+              title="E-Commerce Using React"
+              description="A responsive and modern e-commerce web app built using React.js, showcasing a product listing, cart functionality, and user interface best practices."
+              tags={["React", "React-Router", "Firebase" ,"RESTAPI"]}
+              image="projects/ec.png"
+              link="https://github.com/AbhishekMadhura/E-commerce-React"
+              deployed={{
+                      live: true,
+                      site: "https://e-commerce-react-zeta-one.vercel.app/"
+              }}
             />
-            {/*<ProjectCard*/}
-            {/*  title="Augmented Reality Campus Tour"*/}
-            {/*  description="An AR application that provides interactive tours of the university campus for new students."*/}
-            {/*  tags={["Unity", "ARKit", "C#", "Firebase"]}*/}
-            {/*  image="/placeholder.svg?height=300&width=500"*/}
-            {/*  link="https://github.com"*/}
-            {/*/>*/}
+            <ProjectCard
+              title="Staff Management System"
+              description="The system allows easy access and updating of employee data. It generates timely reports to help monitor employees and support tasks like performance appraisals and promotions"
+              tags={["HTML", "JavaScript", "MySql", "PHP"]}
+              image="projects/Staff.png"
+              link="https://github.com/AbhishekMadhura/StaffManagementSystem"
+              deployed={{
+                      live: false,
+                      site: ""
+              }}
+            />
           </div>
           <div className="mt-12 text-center">
             <Button asChild variant="outline" size="lg">
@@ -316,9 +444,10 @@ export default function Home() {
           </div>
         </section>
         <section id="certificates" className="py-16 scroll-mt-20">
+          
           <h2 className="text-3xl font-bold mb-12 text-center">My Certificates</h2>
             <Certificates/>
-          <h2 className="text-3xl font-bold my-12 text-center">Workshops and Internships</h2>
+          <h2 className="text-3xl font-bold my-12 text-center">Internships</h2>
             <Workshops/>
         </section>
         {/* Contact Section */}
@@ -348,7 +477,15 @@ export default function Home() {
               </div>
             </div>
             <div className="flex-1">
-              <div className="bg-card rounded-xl p-6 border border-border/50">
+              <div className="bg-card rounded-xl p-6 border border-border/50 relative">
+                <GlowingEffect
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={3}
+                />
                 <ContactForm />
               </div>
             </div>

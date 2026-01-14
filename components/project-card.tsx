@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import {Button} from "@/components/button";
-
+import { GlowingEffect } from "./ui/glowing-effect";
 interface ProjectCardProps {
   title: string
   description: string
@@ -20,7 +20,9 @@ interface ProjectCardProps {
 export function ProjectCard({ title, description, tags, image, link, deployed}: ProjectCardProps) {
   return (
     <Card className="overflow-hidden group transition-all duration-300 hover:border-primary/50">
+      
       <div className="relative overflow-hidden h-48">
+      
         <img
           src={image || "/placeholder.svg"}
           alt={title}

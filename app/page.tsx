@@ -139,7 +139,7 @@ export default function Home() {
   
     <div className="min-h-screen bg-background">
       
-      {/* <SplashCursor/> */}
+      <SplashCursor/>
       {/* Header */}
       
       <header className="fixed top-0 w-full border-b border-border/40 bg-background/80 backdrop-blur-md z-50">
